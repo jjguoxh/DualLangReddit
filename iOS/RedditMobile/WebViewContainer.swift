@@ -98,6 +98,8 @@ struct WebViewContainer: UIViewRepresentable {
                 font-size: 0.95em;
                 color: #333;
                 border-left: 3px solid #007aff;
+                white-space: pre-wrap;
+                word-wrap: break-word;
             }
             """
             
@@ -193,7 +195,7 @@ struct WebViewContainer: UIViewRepresentable {
                 for (var i = 0; i < Math.min(elements.length, 30); i++) {
                     var el = elements[i];
                     var text = el.innerText.trim();
-                    if (text.length > 15 && text.length < 1000 && !el.querySelector('img, video')) {
+                    if (text.length > 15 && !el.querySelector('img, video')) {
                         paragraphs.push(text);
                         indices.push(i);
                     }
@@ -216,7 +218,7 @@ struct WebViewContainer: UIViewRepresentable {
                    !paragraphs.isEmpty {
                     
                     print("   ✅ Found \(paragraphs.count) paragraphs to translate")
-                    print("   First 3 paragraphs: \(paragraphs.prefix(3))")
+                    print("   First 3 paragraphs (truncated): \(paragraphs.prefix(3).map { $0.prefix(80) + "..." })")
                     print("   Indices: \(indices)")
                     
                     service.translateBatch(paragraphs: paragraphs) { translations in
@@ -233,14 +235,24 @@ struct WebViewContainer: UIViewRepresentable {
             }
         }
         
+        private func escapeForJavaScript(_ string: String) -> String {
+            var result = string
+            result = result.replacingOccurrences(of: "\\", with: "\\\\")
+            result = result.replacingOccurrences(of: "\"", with: "\\\"")
+            result = result.replacingOccurrences(of: "'", with: "\\'")
+            result = result.replacingOccurrences(of: "\n", with: "\\n")
+            result = result.replacingOccurrences(of: "\r", with: "\\r")
+            result = result.replacingOccurrences(of: "\t", with: "\\t")
+            return result
+        }
+        
         private func insertTranslations(webView: WKWebView, translations: [(String, String?)], indices: [Int]) {
             print("💉 insertTranslations called with \(translations.count) items")
             print("   Indices to insert: \(indices)")
             
             var jsCode = "(function() {"
-            var insertedCount = 0
             
-            for (i, (_, translated)) in translations.enumerated() {
+            for (i, (original, translated)) in translations.enumerated() {
                 guard let translation = translated, !translation.isEmpty else {
                     continue
                 }
@@ -251,35 +263,34 @@ struct WebViewContainer: UIViewRepresentable {
                 
                 let elementIndex = indices[i]
                 
-                print("   📄 Translation \(i): \(translation.prefix(50))... for element index \(elementIndex)")
+                print("   📄 Translation \(i):")
+                print("      Original: \(original.prefix(60))...")
+                print("      Translated: \(translation.prefix(60))...")
+                print("      Length: \(translation.count) characters")
+                print("      Element index: \(elementIndex)")
                 
-                let escaped = translation
-                    .replacingOccurrences(of: "'", with: "\\'")
-                    .replacingOccurrences(of: "\n", with: "\\n")
-                    .replacingOccurrences(of: "\"", with: "\\\"")
-                    .replacingOccurrences(of: "<", with: "&lt;")
-                    .replacingOccurrences(of: ">", with: "&gt;")
+                let escapedTranslation = escapeForJavaScript(translation)
                 
                 jsCode += """
                 var elements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, article p, div[data-click-id="body"] p, div[data-testid="post-container"] p');
                 if (elements[\(elementIndex)]) {
                     var div = document.createElement('div');
                     div.className = 'translated-text';
-                    div.textContent = '翻译: \(escaped)';
+                    div.textContent = '翻译: ' + '\(escapedTranslation)';
                     elements[\(elementIndex)].parentNode.insertBefore(div, elements[\(elementIndex)].nextSibling);
                 }
                 """
-                insertedCount += 1
             }
             
             jsCode += "})();"
             
-            print("   🎨 Inserting \(insertedCount) translations into page")
+            print("   🎨 Inserting \(translations.count) translations")
+            
             webView.evaluateJavaScript(jsCode) { _, error in
                 if let error = error {
                     print("   ❌ Translation insertion error: \(error)")
                 } else {
-                    print("   ✅ Translations successfully inserted")
+                    print("   ✅ Translations inserted successfully")
                 }
             }
         }
