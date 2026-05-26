@@ -5,14 +5,8 @@ import Translation
 @available(iOS 18.0, *)
 class TranslationService: ObservableObject {
     @Published var isTranslating: Bool = false
-    @Published var translationEnabled: Bool = false
     
     func translateBatch(paragraphs: [String], completion: @escaping (([(String, String?)]) -> Void)) {
-        guard translationEnabled else {
-            completion(paragraphs.map { ($0, nil) })
-            return
-        }
-        
         isTranslating = true
         
         Task { @MainActor in

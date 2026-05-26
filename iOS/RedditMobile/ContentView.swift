@@ -8,6 +8,7 @@ struct ContentView: View {
     ]
     
     @StateObject private var translationService = TranslationService()
+    @State private var shouldTranslate = false
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -16,7 +17,7 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 translationToolbar
                 
-                WebViewContainer(url: redditURL(for: selectedCommunity), translationService: translationService)
+                WebViewContainer(url: redditURL(for: selectedCommunity), translationService: translationService, shouldTranslate: $shouldTranslate)
                     .ignoresSafeArea()
             }
         } else {
@@ -32,7 +33,6 @@ struct ContentView: View {
                         ForEach(communities, id: \.self) { community in
                             Button {
                                 selectedCommunity = community
-                                translationService.translationEnabled = false
                             } label: {
                                 Label(community, systemImage: iconFor(community))
                                     .foregroundStyle(selectedCommunity == community ? Color.accentColor : Color.primary)
@@ -45,7 +45,7 @@ struct ContentView: View {
                     
                     Divider()
                     
-                    translationToggle
+                    translationButton
                         .padding(16)
                 }
                 .frame(width: 280)
@@ -58,7 +58,7 @@ struct ContentView: View {
                         translationProgress
                     }
                     
-                    WebViewContainer(url: redditURL(for: selectedCommunity), translationService: translationService)
+                    WebViewContainer(url: redditURL(for: selectedCommunity), translationService: translationService, shouldTranslate: $shouldTranslate)
                         .ignoresSafeArea()
                 }
             }
@@ -70,14 +70,14 @@ struct ContentView: View {
             Spacer()
             
             Button {
-                translationService.translationEnabled.toggle()
+                shouldTranslate = true
             } label: {
                 if translationService.isTranslating {
                     ProgressView()
                         .scaleEffect(0.8)
                 } else {
-                    Image(systemName: translationService.translationEnabled ? "character.bubble.fill" : "character.bubble")
-                        .foregroundStyle(translationService.translationEnabled ? Color.accentColor : Color.primary)
+                    Image(systemName: "character.bubble")
+                        .foregroundStyle(Color.primary)
                 }
             }
             .padding(.trailing, 16)
@@ -86,27 +86,36 @@ struct ContentView: View {
         .background(Color(.systemBackground))
     }
     
-    private var translationToggle: some View {
+    private var translationButton: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("翻译功能")
                 .font(.subheadline)
                 .fontWeight(.medium)
             
-            Toggle("显示中文翻译", isOn: $translationService.translationEnabled)
-                .toggleStyle(.switch)
-                .disabled(translationService.isTranslating)
-            
-            if translationService.isTranslating {
+            Button {
+                shouldTranslate = true
+            } label: {
                 HStack {
-                    ProgressView()
-                        .scaleEffect(0.7)
-                    Text("正在翻译...")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    if translationService.isTranslating {
+                        ProgressView()
+                            .scaleEffect(0.7)
+                        Text("正在翻译...")
+                            .font(.subheadline)
+                    } else {
+                        Image(systemName: "character.bubble")
+                        Text("翻译页面内容")
+                            .font(.subheadline)
+                    }
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(Color.accentColor)
+                .foregroundStyle(.white)
+                .cornerRadius(8)
             }
+            .disabled(translationService.isTranslating)
             
-            Text("使用 iOS 系统翻译将英文段落翻译为简体中文")
+            Text("点击按钮翻译当前页面的英文内容为简体中文")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
