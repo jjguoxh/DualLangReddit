@@ -8,15 +8,16 @@ struct ContentView: View {
     @State private var showAddSubredditSheet = false
     @State private var searchText = ""
     @State private var searchResults: [Subreddit] = []
+    @State private var canGoBack = false
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     var body: some View {
         if horizontalSizeClass == .compact {
             VStack(spacing: 0) {
-                translationToolbar
+                compactToolbar
                 
-                WebViewContainer(url: redditURL(for: selectedSubreddit), translationService: translationService, shouldTranslate: $shouldTranslate)
+                WebViewContainer(url: redditURL(for: selectedSubreddit), translationService: translationService, shouldTranslate: $shouldTranslate, canGoBack: $canGoBack)
                     .ignoresSafeArea()
             }
         } else {
@@ -130,11 +131,42 @@ struct ContentView: View {
                         translationProgress
                     }
                     
-                    WebViewContainer(url: redditURL(for: selectedSubreddit), translationService: translationService, shouldTranslate: $shouldTranslate)
+                    WebViewContainer(url: redditURL(for: selectedSubreddit), translationService: translationService, shouldTranslate: $shouldTranslate, canGoBack: $canGoBack)
                         .ignoresSafeArea()
                 }
             }
         }
+    }
+    
+    private var compactToolbar: some View {
+        HStack {
+            if canGoBack {
+                Button {
+                    NotificationCenter.default.post(name: .webViewGoBack, object: nil)
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(Color.primary)
+                        .frame(width: 44, height: 44)
+                }
+            }
+            
+            Spacer()
+            
+            Button {
+                shouldTranslate = true
+            } label: {
+                if translationService.isTranslating {
+                    ProgressView()
+                        .scaleEffect(0.8)
+                } else {
+                    Image(systemName: "character.bubble")
+                        .foregroundStyle(Color.primary)
+                }
+            }
+            .padding(.trailing, 16)
+        }
+        .frame(height: 44)
+        .background(Color(.systemBackground))
     }
     
     private var translationToolbar: some View {
@@ -248,6 +280,10 @@ struct ContentView: View {
             return String(number)
         }
     }
+}
+
+extension Notification.Name {
+    static let webViewGoBack = Notification.Name("webViewGoBack")
 }
 
 struct AddSubredditSheet: View {

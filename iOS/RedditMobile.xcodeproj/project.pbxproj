@@ -6,27 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		472D4ADC2FC569430022336B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 472D4AC62FC569410022336B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 472D4ACD2FC569410022336B;
-			remoteInfo = RedditMobile;
-		};
-		472D4AE62FC569430022336B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 472D4AC62FC569410022336B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 472D4ACD2FC569410022336B;
-			remoteInfo = RedditMobile;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		472D4ACE2FC569410022336B /* RedditMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		472D4ADB2FC569430022336B /* RedditMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedditMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		472D4AE52FC569430022336B /* RedditMobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedditMobileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -48,34 +29,10 @@
 			path = RedditMobile;
 			sourceTree = "<group>";
 		};
-		472D4ADE2FC569430022336B /* RedditMobileTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RedditMobileTests;
-			sourceTree = "<group>";
-		};
-		472D4AE82FC569430022336B /* RedditMobileUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RedditMobileUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		472D4ACB2FC569410022336B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		472D4AD82FC569430022336B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		472D4AE22FC569430022336B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,8 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				472D4AD02FC569410022336B /* RedditMobile */,
-				472D4ADE2FC569430022336B /* RedditMobileTests */,
-				472D4AE82FC569430022336B /* RedditMobileUITests */,
 				472D4ACF2FC569410022336B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,8 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				472D4ACE2FC569410022336B /* RedditMobile.app */,
-				472D4ADB2FC569430022336B /* RedditMobileTests.xctest */,
-				472D4AE52FC569430022336B /* RedditMobileUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,52 +83,6 @@
 			productReference = 472D4ACE2FC569410022336B /* RedditMobile.app */;
 			productType = "com.apple.product-type.application";
 		};
-		472D4ADA2FC569430022336B /* RedditMobileTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 472D4AF22FC569430022336B /* Build configuration list for PBXNativeTarget "RedditMobileTests" */;
-			buildPhases = (
-				472D4AD72FC569430022336B /* Sources */,
-				472D4AD82FC569430022336B /* Frameworks */,
-				472D4AD92FC569430022336B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				472D4ADD2FC569430022336B /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				472D4ADE2FC569430022336B /* RedditMobileTests */,
-			);
-			name = RedditMobileTests;
-			packageProductDependencies = (
-			);
-			productName = RedditMobileTests;
-			productReference = 472D4ADB2FC569430022336B /* RedditMobileTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		472D4AE42FC569430022336B /* RedditMobileUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 472D4AF52FC569430022336B /* Build configuration list for PBXNativeTarget "RedditMobileUITests" */;
-			buildPhases = (
-				472D4AE12FC569430022336B /* Sources */,
-				472D4AE22FC569430022336B /* Frameworks */,
-				472D4AE32FC569430022336B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				472D4AE72FC569430022336B /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				472D4AE82FC569430022336B /* RedditMobileUITests */,
-			);
-			name = RedditMobileUITests;
-			packageProductDependencies = (
-			);
-			productName = RedditMobileUITests;
-			productReference = 472D4AE52FC569430022336B /* RedditMobileUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -188,14 +95,6 @@
 				TargetAttributes = {
 					472D4ACD2FC569410022336B = {
 						CreatedOnToolsVersion = 26.5;
-					};
-					472D4ADA2FC569430022336B = {
-						CreatedOnToolsVersion = 26.5;
-						TestTargetID = 472D4ACD2FC569410022336B;
-					};
-					472D4AE42FC569430022336B = {
-						CreatedOnToolsVersion = 26.5;
-						TestTargetID = 472D4ACD2FC569410022336B;
 					};
 				};
 			};
@@ -214,28 +113,12 @@
 			projectRoot = "";
 			targets = (
 				472D4ACD2FC569410022336B /* RedditMobile */,
-				472D4ADA2FC569430022336B /* RedditMobileTests */,
-				472D4AE42FC569430022336B /* RedditMobileUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		472D4ACC2FC569410022336B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		472D4AD92FC569430022336B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		472D4AE32FC569430022336B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,34 +135,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		472D4AD72FC569430022336B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		472D4AE12FC569430022336B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		472D4ADD2FC569430022336B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 472D4ACD2FC569410022336B /* RedditMobile */;
-			targetProxy = 472D4ADC2FC569430022336B /* PBXContainerItemProxy */;
-		};
-		472D4AE72FC569430022336B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 472D4ACD2FC569410022336B /* RedditMobile */;
-			targetProxy = 472D4AE62FC569430022336B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		472D4AED2FC569430022336B /* Debug */ = {
@@ -469,90 +325,6 @@
 			};
 			name = Release;
 		};
-		472D4AF32FC569430022336B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AC64Q45XNT;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = guoxh.RedditMobileTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RedditMobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RedditMobile";
-			};
-			name = Debug;
-		};
-		472D4AF42FC569430022336B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AC64Q45XNT;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = guoxh.RedditMobileTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RedditMobile.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RedditMobile";
-			};
-			name = Release;
-		};
-		472D4AF62FC569430022336B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AC64Q45XNT;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = guoxh.RedditMobileUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RedditMobile;
-			};
-			name = Debug;
-		};
-		472D4AF72FC569430022336B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AC64Q45XNT;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = guoxh.RedditMobileUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RedditMobile;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -570,24 +342,6 @@
 			buildConfigurations = (
 				472D4AF02FC569430022336B /* Debug */,
 				472D4AF12FC569430022336B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		472D4AF22FC569430022336B /* Build configuration list for PBXNativeTarget "RedditMobileTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				472D4AF32FC569430022336B /* Debug */,
-				472D4AF42FC569430022336B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		472D4AF52FC569430022336B /* Build configuration list for PBXNativeTarget "RedditMobileUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				472D4AF62FC569430022336B /* Debug */,
-				472D4AF72FC569430022336B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
